@@ -100,7 +100,7 @@ systemctl daemon-reload && systemctl restart iota
 ```
 
 # Credits and useful links
-https://forum.iota.org/t/setting-up-a-headless-node-on-a-ubuntu-iri-version-1-2-1/1332
-https://knarz.github.io/notes/iota-node-do/
-http://www.iotasupport.com/gettingstarted.shtml
-https://iota.readme.io/docs/
+https://forum.iota.org/t/setting-up-a-headless-node-on-a-ubuntu-iri-version-1-2-1/1332  
+https://knarz.github.io/notes/iota-node-do/  
+http://www.iotasupport.com/gettingstarted.shtml  
+https://iota.readme.io/docs/  
