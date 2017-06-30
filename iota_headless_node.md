@@ -1,8 +1,8 @@
-# A guid to:
-Run a headless node on a debian vps as a systemd service.
+# A guide to:
+Run a headless IOTA node on a Debian based VPS as a systemd service.
 
 # Prerequisites
-- VPS server with Debian OS (required for this guide)  
+- VPS server with Debian based OS, eg Ubunutu (required for this guide)  
 - 2GB of Ram minimum , 4GB of ram recommended
 - 10GB of free disk space (ssd preferred).
 
@@ -15,14 +15,13 @@ apt-get -y install openjdk-8-jre
 apt-get -y install wget
 ```
 
-## Download lastes iri from releases on github
-http://github.com/iotaledger/iri/releases
+## Download lastes IRI from Github (Current version 1.2.2)
+https://github.com/iotaledger/iri/releases
 ``` sh
 mkdir -p /opt/iota && cd /opt/iota
 wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.2.2/iri-1.2.2.jar
 ```
-Note: I renamed the iri-1.2.2.jar file to IRI.jar.
-## setup iota.ini
+## Setup iota.ini
 ``` sh
 vim /opt/iota/iota.ini
 ```
@@ -41,7 +40,7 @@ DB_PATH = db
 ```
 Note: you have to find and add neighbours, best way to do it, is to subscribe to the IOTA slack channel (slack.iota.org) and join the #nodesharing channel.
 
-## setup the iota systemd service
+## Setup the IOTA systemd service
 ``` sh
 vim /etc/systemd/system/iota.service
 ```
@@ -53,7 +52,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/iota
-ExecStart=/usr/bin/java -jar IRI.jar -c iota.ini 
+ExecStart=/usr/bin/java -jar  iri-1.2.2.jar -c iota.ini 
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=on-failure
@@ -63,11 +62,11 @@ WantedBy=multi-user.target
 Alias=iota.service
 ```
 
-## run the node
+## Run the node
 systemctl daemon-reload && systemctl restart iota
 systemctl status iota
 
-# add new neighbors
+# Add new neighbors
 just add the address in /opt/iota/iota.ini
 and restart the iota service
 ``` sh
