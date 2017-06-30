@@ -39,6 +39,8 @@ DEBUG = true
 TESTNET = false
 DB_PATH = db
 ```
+Note: you have to find and add neighbours, best way to do it, is to subscribe to the IOTA slack channel (slack.iota.org) and join the #nodesharing channel.
+
 ## setup the iota systemd service
 ``` sh
 vim /etc/systemd/system/iota.service
@@ -74,3 +76,5 @@ systemctl status iota
 ```
 # Credits
 https://forum.iota.org/t/setting-up-a-headless-node-on-a-ubuntu-iri-version-1-2-1/1332
+https://knarz.github.io/notes/iota-node-do/
+http://www.iotasupport.com/gettingstarted.shtml
