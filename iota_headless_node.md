@@ -2,7 +2,7 @@
 Run a headless node on a debian vps as a systemd service.
 
 # Prerequisites
-- VPS server with Debian OS (required for this guide)  
+- VPS server with Debian based OS (that support systemd)  
 - 2GB of Ram minimum , 4GB of ram recommended
 - 10GB of free disk space (ssd preferred).
 
@@ -74,7 +74,33 @@ and restart the iota service
 systemctl daemon-reload && systemctl restart iota
 systemctl status iota
 ```
-# Credits
+
+# Maintaining the node
+To see the logs of the node process:
+``` sh
+journalctl -u iota -f
+```
+
+To check the systemd status
+``` sh
+systemctl status iota
+```
+
+To check the connection
+``` sh
+curl http://localhost:14700 -X POST -H 'Content-Type: application/json' -d '{"command": "getNeighbors"}'
+or
+curl http://localhost:14700 -X POST -H 'Content-Type: application/json' -d '{"command": "getNodeInfo"}'
+```
+
+Updating the node to a newer version:
+just replace the old IRI.jar with the new one and restart the iota service.
+``` sh
+systemctl daemon-reload && systemctl restart iota
+```
+
+# Credits and useful links
 https://forum.iota.org/t/setting-up-a-headless-node-on-a-ubuntu-iri-version-1-2-1/1332
 https://knarz.github.io/notes/iota-node-do/
 http://www.iotasupport.com/gettingstarted.shtml
+https://iota.readme.io/docs/
