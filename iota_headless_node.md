@@ -5,6 +5,7 @@ Run a headless node on a debian vps as a systemd service.
 - VPS server with Debian based OS (that support systemd)  
 - 2GB of Ram minimum , 4GB of ram recommended
 - 10GB of free disk space (ssd preferred).
+- a static ip
 
 # Setup
 ## Installation of required software
@@ -88,11 +89,12 @@ systemctl status iota
 
 To check the connection
 ``` sh
-curl http://localhost:14700 -X POST -H 'Content-Type: application/json' -d '{"command": "getNeighbors"}'
+curl http://localhost:14700 -X POST -H 'Content-Type:application/json' -d
+'{"command":"getNeighbors"}' | python -m json.tool
 or
-curl http://localhost:14700 -X POST -H 'Content-Type: application/json' -d '{"command": "getNodeInfo"}'
+curl http://localhost:14700 -X POST -H 'Content-Type: application/json' -d '{"command": "getNodeInfo"}' | python -m json.tool
 ```
-
+Note: You have to change the port to match yours.
 Updating the node to a newer version:
 just replace the old IRI.jar with the new one and restart the iota service.
 ``` sh
