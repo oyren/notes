@@ -1,13 +1,12 @@
 # A guide to:
 Run a headless IOTA node on a Debian based VPS as a systemd service.
-
 (For more detailed instructions on setting up a VPS with Digital Ocean see: https://knarz.github.io/notes/iota-node-do/)
 
 # Requirements
-- VPS server with Debian based OS, eg Ubunutu (required for this guide)
+- VPS server with Debian based OS (that support systemd)  
 - 2GB of Ram minimum , 4GB of ram recommended
 - 10GB of free disk space (ssd preferred).
-- Static IP (Most VPS service include static IP)
+- a static ip (Most VPS service include static IP)
 
 # Setup
 ## Installation of required software
@@ -91,6 +90,7 @@ To check the systemd status
 systemctl status iota
 ```
 
+
 To check the connection
 ``` sh
 curl http://localhost:14700 -X POST -H 'Content-Type:application/json' -d '{"command":"getNeighbors"}' | python -m json.tool
@@ -99,6 +99,7 @@ curl http://localhost:14700 -X POST -H 'Content-Type: application/json' -d '{"co
 ```
 Note: You have to change the port to match yours.
 Updating the node to a newer version:
+
 - Just replace the old IRI.jar with the new one and restart the iota service.
 
 ``` sh
