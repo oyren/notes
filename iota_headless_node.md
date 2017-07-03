@@ -1,10 +1,13 @@
 # A guide to:
 Run a headless IOTA node on a Debian based VPS as a systemd service.
 
-# Prerequisites
-- VPS server with Debian based OS, eg Ubunutu (required for this guide)  
+(For more detailed instructions on setting up a VPS with Digital Ocean see: https://knarz.github.io/notes/iota-node-do/)
+
+# Requirements
+- VPS server with Debian based OS, eg Ubunutu (required for this guide)
 - 2GB of Ram minimum , 4GB of ram recommended
 - 10GB of free disk space (ssd preferred).
+- Static IP (Most VPS service include static IP)
 
 # Setup
 ## Installation of required software
@@ -15,11 +18,11 @@ apt-get -y install openjdk-8-jre
 apt-get -y install wget
 ```
 
-## Download lastes IRI from Github (Current version 1.2.2)
+## Download lastes IRI from Github (Current version 1.2.3)
 https://github.com/iotaledger/iri/releases
 ``` sh
 mkdir -p /opt/iota && cd /opt/iota
-wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.2.2/iri-1.2.2.jar
+wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.2.3/iri-1.2.3.jar
 ```
 ## Setup iota.ini
 ``` sh
@@ -31,14 +34,14 @@ and insert the following:
 PORT = 14700
 UDP_RECEIVER_PORT = 14600
 TCP_RECEIVER_PORT = 14265
-NEIGHBORS = udp://neighbour1.com:14600 udp://neighbour2:14600 udp://iota.neighbour3:14800
+NEIGHBORS = udp://example.neighbor1.com:14600 udp://example.neighbor2.com:14600 udp://iota.neighbour3:14800
 IXI_DIR = ixi
 HEADLESS = true
 DEBUG = true
 TESTNET = false
 DB_PATH = db
 ```
-Note: you have to find and add neighbours, best way to do it, is to subscribe to the IOTA slack channel (slack.iota.org) and join the #nodesharing channel.
+Note: You will need to find and add neighbors. Best way to do it is to subscribe to the IOTA slack channel (slack.iota.org) and join the #nodesharing channel. Then insert the neighbors IP into iota.ini file above (remove example neighbors and add your own neighbors) 
 
 ## Setup the IOTA systemd service
 ``` sh
@@ -63,17 +66,56 @@ Alias=iota.service
 ```
 
 ## Run the node
-systemctl daemon-reload && systemctl restart iota
-systemctl status iota
-
-# Add new neighbors
-just add the address in /opt/iota/iota.ini
-and restart the iota service
-``` sh
+``` sh 
 systemctl daemon-reload && systemctl restart iota
 systemctl status iota
 ```
-# Credits
-https://forum.iota.org/t/setting-up-a-headless-node-on-a-ubuntu-iri-version-1-2-1/1332
-https://knarz.github.io/notes/iota-node-do/
-http://www.iotasupport.com/gettingstarted.shtml
+
+# Add new neighbors
+Just add the address in /opt/iota/iota.ini
+and restart the iota service
+``` sh
+systemctl daemon-reload && systemctl restart iota && systemctl status iota
+```
+
+# You have now succesfully set-up a headless 24/7 IOTA node! 
+
+# Maintaining the node
+To see the logs of the node process:
+``` sh
+journalctl -u iota -f
+```
+
+To check the systemd status
+``` sh
+systemctl status iota
+```
+
+To check the connection
+``` sh
+curl http://localhost:14700 -X POST -H 'Content-Type:application/json' -d '{"command":"getNeighbors"}' | python -m json.tool
+or
+curl http://localhost:14700 -X POST -H 'Content-Type: application/json' -d '{"command": "getNodeInfo"}' | python -m json.tool
+```
+Note: You have to change the port to match yours.
+Updating the node to a newer version:
+- Just replace the old IRI.jar with the new one and restart the iota service.
+
+``` sh
+cd /opt/iota
+wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.x.x/iri-1.x.x.jar
+```
+
+``` sh
+systemctl daemon-reload && systemctl restart iota
+```
+# Some Errors
+
+Connection refused or Connection reset by peer:
+- make sure you are communicating through the right port (iota.ini or cURL/Python commands)
+
+# Credits and useful links
+https://forum.iota.org/t/setting-up-a-headless-node-on-a-ubuntu-iri-version-1-2-1/1332  
+https://knarz.github.io/notes/iota-node-do/  
+http://www.iotasupport.com/gettingstarted.shtml  
+https://iota.readme.io/docs/  
