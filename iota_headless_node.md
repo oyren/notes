@@ -97,9 +97,9 @@ curl http://localhost:14700 -X POST -H 'Content-Type:application/json' -d '{"com
 or
 curl http://localhost:14700 -X POST -H 'Content-Type: application/json' -d '{"command": "getNodeInfo"}' | python -m json.tool
 ```
-Note: You have to change the port to match yours.
-Updating the node to a newer version:
+Note: You have to change the port to match yours.  
 
+Updating the node to a newer version:
 - Just replace the old IRI.jar with the new one and restart the iota service.
 
 ``` sh
