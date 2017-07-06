@@ -54,7 +54,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/iota
-ExecStart=/usr/bin/java -jar  IRI.jar -c iota.ini 
+ExecStart=/usr/bin/java -Xmx4g -jar IRI.jar -c iota.ini 
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=on-failure
@@ -63,7 +63,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 Alias=iota.service
 ```
-
+Note: You probably have to change the "-Xmx4g" parameter to the amount of RAM the node should use (4g = 4 GB of RAM).
 ## Run the node
 ``` sh 
 systemctl daemon-reload && systemctl restart iota
