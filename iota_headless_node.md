@@ -54,7 +54,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/opt/iota
-ExecStart=/usr/bin/java -Xmx4g -jar IRI.jar -c iota.ini 
+ExecStart=/usr/bin/java -Xmx4g -jar IRI.jar -c iota.ini --remote
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=on-failure
