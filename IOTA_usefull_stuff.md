@@ -1,3 +1,4 @@
+https://github.com/ertugrulyilmaz/awesome-iota
 # Help for Newcomers
 http://www.tangleblog.com/2017/06/05/ama-answers-for-newcomers/
 http://www.iotasupport.com/
