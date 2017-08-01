@@ -64,6 +64,12 @@ WantedBy=multi-user.target
 Alias=iota.service
 ```
 Note: You probably have to change the "-Xmx4g" parameter to the amount of RAM the node should use (4g = 4 GB of RAM).
+**For those who start a new node and synchronize the first time:
+Please add the following line to the iota.ini configuration file:
+P_REMOVE_REQUEST = 0.0
+The default for this value in IRI is 0.03. That means that 3% of requests for missing transactions are constantly removed from the request queue.
+I have the suspicion that P_REMOVE_REQUEST = 0.03 contributes to the difficulties to get a node *solid*.
+Once your node is synched, you can remove this line and restart IRI.**
 ## Run the node
 ``` sh 
 systemctl daemon-reload && systemctl restart iota
