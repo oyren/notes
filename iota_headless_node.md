@@ -17,11 +17,11 @@ apt-get -y install openjdk-8-jre
 apt-get -y install wget
 ```
 
-## Download lastes IRI from Github (Current version 1.2.4)
+## Download lastes IRI from Github (Current version 1.4.0)
 https://github.com/iotaledger/iri/releases
 ``` sh
 mkdir -p /opt/iota && cd /opt/iota
-wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.3/iri-1.3.0.jar
+wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.4.0/iri-1.4.0.jar
 ```
 ## Setup iota.ini
 ``` sh
