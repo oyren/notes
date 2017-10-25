@@ -21,7 +21,7 @@ apt-get -y install wget
 https://github.com/iotaledger/iri/releases
 ``` sh
 mkdir -p /opt/iota && cd /opt/iota
-wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.4.0/iri-1.4.0.jar
+wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.4.1.1/iri-1.4.1.1.jar
 ```
 ## Setup iota.ini
 ``` sh
