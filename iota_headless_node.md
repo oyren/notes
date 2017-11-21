@@ -17,11 +17,11 @@ apt-get -y install openjdk-8-jre
 apt-get -y install wget
 ```
 
-## Download lastes IRI from Github (Current version 1.4.0)
+## Download lastes IRI from Github (Current version 1.4.1.2)
 https://github.com/iotaledger/iri/releases
 ``` sh
 mkdir -p /opt/iota && cd /opt/iota
-wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.4.1.1/iri-1.4.1.1.jar
+wget -O IRI.jar https://github.com/iotaledger/iri/releases/download/v1.4.1.2/iri-1.4.1.2.jar
 ```
 ## Setup iota.ini
 ``` sh
@@ -99,9 +99,9 @@ systemctl status iota
 
 To check the connection
 ``` sh
-curl http://localhost:14700 -X POST -H 'Content-Type:application/json' -d '{"command":"getNeighbors"}' | python -m json.tool
+curl http://localhost:14700 -X POST -H "X-IOTA-API-Version: 1.4.1" -H 'Content-Type:application/json' -d '{"command":"getNeighbors"}' | python -m json.tool
 or
-curl http://localhost:14700 -X POST -H 'Content-Type: application/json' -d '{"command": "getNodeInfo"}' | python -m json.tool
+curl http://localhost:14700 -X POST -H "X-IOTA-API-Version: 1.4.1" -H 'Content-Type:application/json' -d '{"command":"getNodeInfo"}' | python -m json.tool
 ```
 Note: You have to change the port to match yours.  
 
