@@ -1,4 +1,4 @@
-# A better and more detailed guide can be found unter http://www.iota.partners/
+# A better and more detailed guide can be found under http://www.iota.partners/
 
 I will not upgrade this guide anymore. (2017-12-15)
 
