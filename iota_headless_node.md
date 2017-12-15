@@ -1,3 +1,7 @@
+# A better and more detailed guide can be found unter http://www.iota.partners/
+
+I will not upgrade this guide anymore. (2017-12-15)
+
 # A guide to:
 Run a headless IOTA node on a Debian based VPS as a systemd service.
 (For more detailed instructions on setting up a VPS with Digital Ocean see: https://knarz.github.io/notes/iota-node-do/)
