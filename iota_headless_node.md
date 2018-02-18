@@ -1,4 +1,4 @@
-# A better and more detailed guide can be found under http://www.iota.partners/
+# A better and more detailed guide can be found under http://www.iota.partners/ or https://github.com/nuriel77/iri-playbook
 
 I will not upgrade this guide anymore. (2017-12-15)
 
@@ -18,7 +18,7 @@ Run a headless IOTA node on a Debian based VPS as a systemd service.
 su -
 apt-get -y update
 apt-get -y install openjdk-8-jre
-apt-get -y install wget
+apt-get -y install wget jq
 ```
 
 ## Download lastes IRI from Github (Current version 1.4.1.2)
@@ -103,9 +103,9 @@ systemctl status iota
 
 To check the connection
 ``` sh
-curl http://localhost:14700 -X POST -H "X-IOTA-API-Version: 1.4.1" -H 'Content-Type:application/json' -d '{"command":"getNeighbors"}' | python -m json.tool
+curl http://localhost:14700 -X POST -H "X-IOTA-API-Version: 1.4.1" -H 'Content-Type:application/json' -d '{"command":"getNeighbors"}' | jq
 or
-curl http://localhost:14700 -X POST -H "X-IOTA-API-Version: 1.4.1" -H 'Content-Type:application/json' -d '{"command":"getNodeInfo"}' | python -m json.tool
+curl http://localhost:14700 -X POST -H "X-IOTA-API-Version: 1.4.1" -H 'Content-Type:application/json' -d '{"command":"getNodeInfo"}' | jq
 ```
 Note: You have to change the port to match yours.  
 
