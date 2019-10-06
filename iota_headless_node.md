@@ -1,4 +1,4 @@
-# A better and more detailed guide can be found under http://www.iota.partners/ or https://github.com/nuriel77/iri-playbook
+# A better and more detailed guide can be found under https://github.com/oyren/yet_another_iota_iri_setup, http://www.iota.partners/ or https://github.com/nuriel77/iri-playbook
 
 I will not upgrade this guide anymore. (2017-12-15)
 
